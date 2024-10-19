@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Nurse</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="icon" href="MediVault.png" type="image/x-icon">
+
+    </head>
+    <body>
+<section style="display: flex;">
+    <div class="side-bar">
+        <div id="doctor-info">
+            <img src="icon.png" alt="Profile Picture">
+            <h2>Nurse Information</h2>
+            <h2>Welcome,  </h2>
+            <button class="sign-out">Log out</button>
+            <div class="solid-line"></div>
+        </div>
+        <nav>
+            <a href="#" data-content="dashboard" class="active"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+            <a href="#" data-content="patients"><i class="fas fa-user-injured"></i>Patients</a>
+            <a href="#" data-content="bookings"><i class="fas fa-calendar-check"></i>Bookings</a>
+            <a href="#" data-content="settings"><i class="fas fa-cogs"></i>Settings</a>
+        </nav>
+    </div>
+    <div class="main-content" >
+        <header>
+           
+        </header>
+
+        <div id="dashboard" class="content-section active">
+            <h1>Welcome to the Dashboard</h1>
+            <p>Here you can view and manage your information.</p>
+            <div class="dashboard-metrics">
+                <div class="metric" id="patient-count">
+                    <h2>Patients</h2>
+                    <p>0</p>
+                </div>
+                <div class="metric" id="appointment-count">
+                    <h2>Appointments</h2>
+                    <p>0</p>
+                </div>
+                
+            </div>
+            <div class="appointments-list">
+                <h2>Upcoming Appointments</h2>
+                <ul id="appointmentsList"></ul>
+            </div>
+           
+        </div>
+        <div id="patients" class="content-section">
+            <h1>Patients</h1>
+            <p>Manage patient information here.</p>
+            <p>DON'T FORGET THE SEARCH FUNCTIONALITY</p>
+            <section>
+                <div class="register-patient-container">
+                <form class="register-patient-form" >
+                <h2>Register a Patient</h2>
+                <div class="input-group-book">
+                </div>
+                
+                <div class="input-group-book">
+                    <label for="patientGender">Patient Gender</label>
+                        <select id="patientGender" name="gender">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                                <div class="input-group-book">
+                                    <label for="patientContact">Contact Number</label>
+                                    <input type="text" id="patientContact" name="contactNO">
+                                </div>
+                                <div class="input-group-book">
+                                    <label for="pastConditions">Past Conditions</label>
+                                    <input type="text" id="pastConditions" name="pastConditions">
+                                </div>
+                                <div class="input-group-book">
+                                    <label for="allergies">Allergies</label>
+                                    <input type="text" id="allergies" name="allergies">
+                                </div>
+                                <div class="input-group-book">  
+                                    <label for="familyMedicalHistory">Family Medical History</label>
+                                    <input type="text" id="familyMedicalHistory" name="familyMedicalHistory">
+                                </div>
+                                <div class="input-group-book">
+                                    <label for="BP">BP</label>
+                                    <input type="text" id="BP" name="BP">
+                                </div>
+                                <div class="input-group-book">
+                                    <label for="heartrate">Heartrate</label>
+                                    <input type="text" id="heartrate" name="heartrate">
+                                </div>
+                                <div class="input-group-book">
+                                    <label for="temperature">Temperature</label>
+                                    <input type="text" id="temperature" name="temperature">
+                                </div>
+                                <div class="input-group-book">
+                                    <label for="respiratoryRate">Respiratory Rate</label>
+                                    <input type="text" id="respiratoryRate" name="respiratoryRate">
+                                </div>
+
+                                <button type="submit">Register Patient</button>
+                            </form>
+                        </div>
+                        <div id="patientList" class="patient-list">
+                            <h2>Patient List</h2>
+                            <table>
+                
+                <tr>
+                   
+                    <th>patientID</th>
+                    <th>gender</th>
+                    <th> pastConditions</th>
+                    <th> allergies</th>
+                    <th>  familyMedicalHistory</th>
+                    <th>symptoms</th>
+                    <th>BP</th>
+                    <th> heartrate</th>
+                    <th>temperature</th>
+                    <th> respiratoryRate</th>
+                    </tr>
+            
+            
+          
+                <?php
+    
+    $conn = new mysqli('localhost', 'root', '', 'medivault');
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    };
+    $sql = "SELECT* from patients";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+           // echo "<tr><td>" . $row["appointmentDate"] . "</td></tr>" ."<tr><td>".$row["appointmentTime"]."</td></tr>"."<tr><td>".$row["appointmwntDetails"]."</td></tr>";
+            echo "<tr><td>" . $row["patientID"] . "</td>";
+            echo "<td>" . $row["gender"] . "</td>";
+            echo "<td>" . $row["pastConditions"] . "</td>";
+            echo "<td>" . $row["allergies"] . "</td>";
+            echo "<td>" . $row["familyMedicalHistory"] . "</td>";
+            echo "<td>" . $row["symptoms"] . "</td>";
+            echo "<td>" . $row["BP"] . "</td>";
+            echo "<td>" . $row["heartrate"] . "</td>";
+            echo "<td>" . $row["temperature"] . "</td>";
+            echo "<td>" . $row["respiratoryRate"] . "</td></tr>";
+
+        }
+    }
+    else{
+        echo "no data entry";
+    }
+    $conn->close();
+    ?>
+        </table>
+                        </div>
+
+                </section>
+        </div>
+        <div id="bookings" class="content-section">
+            <h1>Bookings</h1>
+            <p>View and manage bookings here.</p>
+            <table>
+                
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Details</th>
+                    </tr>
+                
+                
+        <?php
+        
+        $conn = new mysqli('localhost', 'root', '', 'medivault');
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        };
+        $sql = "SELECT* from appointments";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+               // echo "<tr><td>" . $row["appointmentDate"] . "</td></tr>" ."<tr><td>".$row["appointmentTime"]."</td></tr>"."<tr><td>".$row["appointmwntDetails"]."</td></tr>";
+                echo "<tr><td>" . $row["appointmentDate"] . "</td>";
+                echo "<td>" . $row["appointmentTime"] . "</td>";
+                echo "<td>" . $row["appointmentDetails"] . "</td></tr>";
+            }
+        }
+        else{
+            echo "no data entry";
+        }
+        $conn->close();
+        ?>
+                    
+                
+            </table>
+        </div>
+       
+       
+        <div id="settings" class="content-section">
+            <h1>Settings</h1>
+            <p>Adjust settings here.</p>
+        </div>
+    </div>
+    </section>
+ <footer>
+    <p>&copy; 2024 MediVault. All rights reserved.</p>
+</footer>
+<script>
+document.querySelectorAll('.side-bar nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Remove active class from all links
+                document.querySelectorAll('.side-bar nav a').forEach(a => a.classList.remove('active'));
+                // Hide all content sections
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                // Show the content section corresponding to the clicked link
+                document.getElementById(this.getAttribute('data-content')).classList.add('active');
+            });
+        });
+
+///////////////////////////////////////////confirmation for buttons
+document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function(event) {
+            // Perform your button-specific action here
+            const confirmed = confirm("Are you sure you want to proceed?");
+            if (confirmed) {
+                console.log(`${button.textContent} clicked and confirmed`);
+            }
+            else{
+                event.preventDefault(); // Prevent the default action if the user cancels
+            }
+        });
+    });
+});
+///////////////////////////////////////////////////////////////////////
+
+    //////////////////////////dashboard//////////////////////////////////////
+// Load dashboard data
+document.addEventListener("DOMContentLoaded", function() {
+    const patientCount = document.getElementById("patient-count").querySelector("p");
+    const appointmentCount = document.getElementById("appointment-count").querySelector("p");
+    const prescriptionCount = document.getElementById("prescription-count").querySelector("p");
+    const appointmentsList = document.getElementById("appointmentsList");
+    const recentPrescriptionsList = document.getElementById("recentPrescriptionsList");
+
+    // Update dashboard metrics
+    patientCount.textContent = patients;
+    appointmentCount.textContent = appointments.length;
+    prescriptionCount.textContent = prescriptions.length;
+
+    // Update appointments list
+    appointments.forEach(appointment => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${appointment.date} at ${appointment.time} - ${appointment.patient}`;
+        appointmentsList.appendChild(listItem);
+    });
+
+    
+}); 
+///////////////////////////////logout/////////////////////////////////////////////
+function logout() {
+    // Perform logout by ending the session
+    fetch('logout.php', { method: 'POST' })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = 'login.html';
+            }
+        });
+}
+/////////////////////////////////////////////////////////////////////
+
+</script>
+    </body>
+</html>

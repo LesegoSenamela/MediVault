@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+ <link rel="icon" href="MediVault.png" type="image/x-icon">
+
+ <style>
+    body {
+        background-image: url('loginback.png');
+    }
+    
+ </style>
+
+</head>
+<body>
+    <div class="register-container">
+        <form class="register-form" action="submit_register.php" method="post">
+            <div class="form-header">
+                <img src="MediVault.png" alt="Profile Picture">
+                <span>Welcome To MediVault</span>
+                </div>
+                <div class="solid-line"></div>   
+            <h2>Create an Account</h2>
+            <div class="input-group">
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="input-group" style="display: flex; gap: 10px;">
+                <input type="text" id="fname" name="firstName" placeholder="First Name" required>
+                <input type="text" id="lname" name="lastName" placeholder="Last Name" required>
+            </div>
+            <fieldset>
+            <legend> Gender</legend>
+            <label for="patientGender"><input type="radio" id="gender" name="gender" value="m">Male</label> <br>
+            <label for="patientGender"><input type="radio" id="gender" name="gender" value="f">Female</label>
+            </fieldset>
+            <div class="input-group">
+                <input type="text" id="patientAge" name="IDNum" placeholder="Identity Number" required>
+            </div>
+            <div class="input-group">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="input-group">
+                <input type="tel" id="patient-phone" name="contactNO"  placeholder="(000) 000-0000" >
+            </div>
+            <fieldset>
+                <legend> Address</legend>
+            <div class="input-group">
+                <input type="text" id="patient-address" name="address" placeholder="Street Address" >
+            </div>
+            <div class="input-group">
+                <input type="text" id="patient-address-line2" name="patientAddress" placeholder="Street Address Line 2">
+            </div>
+            <div class="input-group">
+                <input type="text" id="patient-city" name="patientCity" placeholder="City" >
+            </div>
+            <div class="input-group">
+                <input type="text" id="patient-state" name="patientState" placeholder="State / Province">
+            </div>
+            <div class="input-group">
+                <input type="text" id="patient-zip" name="patientZip" placeholder="Postal / Zip Code" >
+            </div>
+            </fieldset>
+            <div class="input-group" style="display: flex; gap: 10px;">
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>                
+            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+            </div>
+            <div class="input-group">
+            <input type="text" id="profession" name="profession" placeholder="Please enter your Profession if NURSE/DOCTOR/PHARMACIST">   
+            </div>
+            <div class="input-group">
+            <input type="text" id="department" name="department" placeholder="Please enter the department you work at if NURSE/DOCTOR/PHARMACIST">
+            </div>
+            <select id="role" name="role" required >
+                <option value="patient">Patient</option>
+                
+            </select>
+            
+            <button type="submit">Register</button>
+            <div class="login-link">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

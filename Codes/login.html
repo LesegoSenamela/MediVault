@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"integrity="sha512k6RqeWeci5ZR/Lv4MR0sA0FfDOM1M4J63cK6aVNgJkm6x0UAA2gHiR3q3IHcd6jTbtWzHC3DzRFbbKJIF1l3Nw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+\
+<title>Login</title>
+ <link rel="icon" href="MediVault.png" type="image/x-icon">
+
+ <style>
+    body {
+  
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: -webkit-linear-gradient(left, #14ab56, #007bff);
+  box-sizing: border-box;
+
+    }
+    *, *:before, *:after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+    }
+ </style>
+</head>
+
+<body>
+    <div class="cont">
+
+<div class="login-container">
+        <form id="login-form" class="login-form" action="submit_login.php" method="POST">
+            <div class="form-header">
+            <img src="MediVault.png" alt="Profile Picture">
+            <span>Welcome To MediVault</span>
+            </div>
+            <div class="solid-line"></div>   
+            <h2>Sign In</h2>
+            <div class="input-group">
+                
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            <div class="input-group">
+               
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <select id="role" name="role" required >
+                <option value="patient">Patient</option> 
+                <option value="doctor">Doctor</option>  
+                <option value="nurse">Nurse</option>  
+                <option value="pharmacist">Pharmacist</option>  
+            </select>
+            <div class="form-options">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="remember-me" name="remember-me">
+                    <label for="remember-me">Remember Me</label>
+                </div>
+                <a href="forgotpassword.html" class="forgot-password">Forgot Password?</a>
+            </div>
+            <button type="submit" class="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="sub-cont">
+        <div class="img">
+            <div class="img-text m-up">
+              <h2>New here?</h2>
+              <p>Sign up and discover great amount of new opportunities!</p>
+            </div>
+            <div class="img-text m-in">
+              <h2>One of us?</h2>
+              <p>If you already has an account, just sign in. We've missed you!</p>
+            </div>
+            <div class="img-btn">
+              <span class="m-up">Sign Up</span>
+              <span class="m-in">Sign In</span>
+            </div>
+          </div>
+          <div class="form sign-up">
+
+    <div class="register-container">
+    <form class="register-form" action="submit_register.php" method="POST">
+        <div class="form-header">
+            <img src="MediVault.png" alt="Profile Picture">
+            <span>Welcome To MediVault</span>
+            </div>
+            <div class="solid-line"></div>   
+        <h2>Sign Up</h2>
+        <div class="input-group">
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+        </div>
+        <div class="input-group" style="display: flex; gap: 10px;">
+        <input type="text" id="fname" name="firstName" placeholder="First Name" required>
+        <input type="text" id="lname" name="lastName" placeholder="Last Name" required>
+        </div>
+        <fieldset>
+        <legend> Gender</legend>
+        <label for="patientGender"><input type="radio" id="gender" name="gender" value="m">Male</label> <br>
+        <label for="patientGender"><input type="radio" id="gender" name="gender" value="f">Female</label>
+        </fieldset>
+        <div class="input-group">
+        <input type="text" id="patientAge" name="IDNum" placeholder="Identity Number" required>
+        </div>
+        <div class="input-group">
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="input-group">
+            <input type="tel" id="patient-phone" name="contactNO"  placeholder="(000) 000-0000" >
+        </div>
+        <fieldset>
+            <legend> Address</legend>
+        <div class="input-group">
+            <input type="text" id="patient-address" name="address" placeholder="Street Address" >
+        </div>
+        <div class="input-group">
+            <input type="text" id="patient-address-line2" name="patientAddress" placeholder="Street Address Line 2">
+        </div>
+        <div class="input-group">
+            <input type="text" id="patient-city" name="patientCity" placeholder="City" >
+        </div>
+        <div class="input-group">
+            <input type="text" id="patient-state" name="patientState" placeholder="State / Province">
+        </div>
+        <div class="input-group">
+            <input type="text" id="patient-zip" name="patientZip" placeholder="Postal / Zip Code" >
+        </div>
+        </fieldset>
+        <div class="input-group" style="display: flex; gap: 10px;">
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>                
+        <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm password" required>
+        </div>
+        <select id="role" name="role" required >
+            <option value="patient">Patient</option> 
+            <option value="doctor">Doctor</option>  
+            <option value="nurse">Nurse</option>  
+            <option value="pharmacist">Pharmacist</option>
+        </select>
+        <button type="submit" class="submit">Register</button>
+    </form>
+    </div>
+    </div>
+</div>
+</div>
+    <script>
+
+document.querySelector('.img-btn').addEventListener('click', function()
+	{
+		document.querySelector('.cont').classList.toggle('s-signup')
+	}
+);
+
+window.addEventListener('scroll', function() {
+    const formContainer = document.querySelector('.form-container');
+    const rect = formContainer.getBoundingClientRect();
+
+    // Check if the form is in the viewport
+    if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        formContainer.classList.add('in-view');
+    } else {
+        formContainer.classList.remove('in-view');
+    }
+});
+
+    </script>
+</body>
+</html>

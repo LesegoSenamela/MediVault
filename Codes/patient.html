@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Patient</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="icon" href="MediVault.png" type="image/x-icon">
+
+    </head>
+    <body>
+<section style="display: flex;">
+    <div class="side-bar">
+        <div id="doctor-info">
+            <img src="icon.png" alt="Profile Picture">
+            <h2>Welcome, <?php echo $_SESSION['firstName']; ?></h2>
+            <p id="name">Contact: <?php echo $_SESSION['contactNO']; ?></p> 
+            <p id="email">Email: <?php echo $_SESSION['email']; ?></p>
+            <button class="sign-out" onclick="logout()">Log out</button>
+            <div class="solid-line"></div>
+        </div>
+        <nav>
+            <a href="#" data-content="dashboard" class="active"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
+            <a href="#" data-content="bookings"><i class="fas fa-calendar-check"></i>Bookings</a>
+            <a href="#" data-content="prescriptions"><i class="fas fa-prescription-bottle-alt"></i>Prescriptions</a>
+            <a href="#" data-content="medicalRecords"><i class="fas fa-file-medical"></i>Medical Records</a>
+            <a href="#" data-content="settings"><i class="fas fa-cogs"></i>Settings</a>
+        </nav>
+    </div>
+    <div class="main-content" >
+        <header>
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button onclick="searchRecords()">Search</button>             
+        </header>
+		 <div id="dashboard" class="content-section active">
+            <h1>Welcome to the Dashboard</h1>
+            <p>Here you can view and manage your information.</p>
+            <div class="dashboard-metrics">
+                <div class="metric" id="records-count">
+                    <h2><button class="shortcuts" onclick="navigateToSection('medicalRecords')">Medical Records</button></h2>    
+                </div>
+                <div class="metric" id="appointment-count">
+                    <h2><button class="shortcuts"  onclick="navigateToSection('bookings')">Bookings</button></h2>
+                </div>
+                <div class="metric" id="prescription-count">
+                    <h2><button class="shortcuts"  onclick="navigateToSection('prescriptions')">Prescriptions</button></h2>
+                    
+                </div>
+            </div>
+         <!--  <div class="appointments-list">
+                <h2>Upcoming Appointments</h2>
+                <ul id="appointmentsList"></ul>
+            </div> they cant seem to coexist -->
+            <div class="recent-prescriptions">
+                <h2>Recent Prescriptions</h2>
+                <ul id="recentPrescriptionsList"></ul>
+            </div>
+        </div>
+        <div id="medicalRecords" class="content-section">
+            <h1>Medical Records</h1>
+            <p>See medical records here.</p>
+            <section>
+			<!--medicalRecords-->
+            <div class="medicalrecords">
+                <h2>Medical Records</h2>
+                <ul id="recordsList"></ul>
+            </div>
+            </section>
+        </div>
+        <div id="bookings" class="content-section">
+            <h1>Bookings</h1>
+            <p>View and manage bookings here.</p>
+			<!--add booking appointment form-->
+			<div id="booking" class="booking-container">
+                    <form id="bookingForm" class="booking-form"  >
+                <div class="input-group-book" >
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="appointmentDate" required>
+                </div>
+                <div class="input-group-book" >
+                    <label for="time">Time</label>
+                    <input type="time" id="time" name="appointmentTime" required>
+                </div>
+                <div class="input-group-book">
+                    <label for="details">Details</label>
+                    <textarea id="details" name="appointmentDetails" rows="4" required></textarea>
+                </div>
+               
+                    <button type="submit">Book Appointment</button>
+                
+            </form>
+			</div>
+            
+
+            <div id="appointments" class="appointments-list">
+                <h2>Appointments</h2>
+                <ul id="appointmentsList"></ul>
+            </div>
+
+        </div>
+       
+        <div id="prescriptions" class="content-section">
+            <h1>Prescriptions</h1>
+            <p>Handle prescriptions here.</p>
+            <section>
+               
+        <div id="prescriptions-List" class="prescriptions-container">
+            <h2>Prescriptions</h2>
+             <ul id="prescriptionsList"></ul>
+        </div>
+
+
+        
+				<!--add prescription-->
+</section>
+        </div>
+        <div id="settings" class="content-section">
+            <h1>Settings</h1>
+            <p>Adjust settings here.</p>
+        </div>
+    </div>
+    </section>
+ <footer>
+    <p>&copy; 2024 MediVault. All rights reserved.</p>
+</footer>
+<script>
+
+document.querySelectorAll('.side-bar nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Remove active class from all links
+                document.querySelectorAll('.side-bar nav a').forEach(a => a.classList.remove('active'));
+                // Hide all content sections
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                // Show the content section corresponding to the clicked link
+                document.getElementById(this.getAttribute('data-content')).classList.add('active');
+            });
+        });
+
+///////////////////////////////////////////confirmation for buttons
+document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function(event) {
+            // Perform your button-specific action here
+            const confirmed = confirm("Are you sure you want to proceed?");
+            if (confirmed) {
+                console.log(`${button.textContent} clicked and confirmed`);
+            }
+            else{
+                event.preventDefault(); // Prevent the default action if the user cancels
+            }
+        });
+    });
+});
+///////////////////////////////////////////////////////////////////////
+
+    //////////////////////////dashboard//////////////////////////////////////
+// Load dashboard data
+document.addEventListener("DOMContentLoaded", function() {
+    const patientCount = document.getElementById("patient-count").querySelector("p");
+    const appointmentCount = document.getElementById("appointment-count").querySelector("p");
+    const prescriptionCount = document.getElementById("prescription-count").querySelector("p");
+    const appointmentsList = document.getElementById("appointmentsList");
+    const recentPrescriptionsList = document.getElementById("recentPrescriptionsList");
+
+   
+    // Update dashboard metrics
+    patientCount.textContent = patients;
+    appointmentCount.textContent = appointments.length;
+    prescriptionCount.textContent = prescriptions.length;
+
+    // Update appointments list
+    appointments.forEach(appointment => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `${appointment.date} at ${appointment.time} - ${appointment.patient}`;
+        appointmentsList.appendChild(listItem);
+    });
+
+    // Update recent prescriptions list
+    prescriptions.slice(-5).forEach(prescription => {
+        const listItem = document.createElement("li");
+        listItem.textContent = `Patient: ${prescription.patientName}, Medication: ${prescription.medication}, Dosage: ${prescription.dosage}, Prescribed by: Dr. ${prescription.doctorName}`;
+        recentPrescriptionsList.appendChild(listItem);
+    });
+}); 
+/////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////logout/////////////////////////////////////////////
+function logout() {
+    // Perform logout by ending the session
+    fetch('logout.php', { method: 'POST' })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = 'login.html';
+            }
+        });
+}
+/////////////////////////////////////////////////////////////////////
+////////////////////////////////////search records/////////////////////
+function searchRecords() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const records = document.querySelectorAll('#recordsList li');
+    records.forEach(record => {
+        if (record.textContent.toLowerCase().includes(query)) {
+            record.style.display = '';
+        } else {
+            record.style.display = 'none';
+        }
+    });
+}
+///////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////shortcuts////////////////////////
+function navigateToSection(sectionId) {
+    document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+    document.querySelectorAll('.side-bar nav a').forEach(a => a.classList.remove('active'));
+    document.querySelector(`.side-bar nav a[data-content="${sectionId}"]`).classList.add('active');
+}
+////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////handle form submissions
+    document.getElementById('bookingForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+
+        const formData = new FormData(this); // Collect form data
+
+        fetch('submit_booking.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Display alert with success message
+                alert(data.message);
+
+                // Dynamically update the appointments list without reloading the page
+                const appointmentsList = document.getElementById('appointmentsList');
+                const listItem = document.createElement('li');
+                listItem.textContent = `Date: ${data.appointmentDate}, Time: ${data.appointmentTime}, Details: ${data.appointmentDetails}`;
+                appointmentsList.appendChild(listItem);
+
+                // Optionally clear the form
+                document.getElementById('bookingForm').reset();
+            } else {
+                // Display error alert
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to book appointment. Please try again.');
+        });
+    });
+/////////////////////////////////////////////////////////////////////////////////////
+</script>
+    </body>
+</html>
+		
