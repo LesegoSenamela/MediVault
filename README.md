@@ -15,8 +15,10 @@ MediVault is a secure web-based application designed to manage and store medical
 - Prescription form with signature capture
 - Real-time form validation and data updates
 
+<!--
 ## 📸 Screenshots
 > *Add screenshots here to showcase the UI (optional)*
-
+-->
 ## 🚀 How to Run Locally
 Copy the folder and place it under the htdocs folder in the XAMPP download directory.
+I will upload screenshots of the final product.
