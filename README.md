@@ -20,5 +20,25 @@ MediVault is a secure web-based application designed to manage and store medical
 > *Add screenshots here to showcase the UI (optional)*
 -->
 ## 🚀 How to Run Locally
-Copy the folder and place it under the htdocs folder in the XAMPP download directory.
+1. Clone this repo:
+   ```bash
+   git clone https://github.com/LesegoSenamela/MediVault.git
+   ```
+2. Move it to your `htdocs` directory (if using XAMPP)
+  ```bash
+    mv MediVault /xampp/htdocs/
+```
+3. Start Apache and MySQL in XAMPP.
+4. Import the database using `phpMyAdmin`. (database setup scripts are available if you require them)
+5. Visit `http://localhost/MediVault` in your browser.
+
+## 🛡 Security Notes
+- Input sanitization and SQL injection prevention in progress.
+- Passwords are hashed before storage.
+
+## 📬 Contact
+Feel free to reach out on [LinkedIn](https://linkedin.com/in/lesego-senamela) or by email at **senamelalesego@gmail.com**
+
+
+
 I will upload screenshots of the final product.
