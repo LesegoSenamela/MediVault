@@ -27,7 +27,7 @@ MediVault is a secure web-based application designed to manage and store medical
 2. Move it to your `htdocs` directory (if using XAMPP)
   ```bash
     mv MediVault /xampp/htdocs/
-```
+   ```
 3. Start Apache and MySQL in XAMPP.
 4. Import the database using `phpMyAdmin`. (database setup scripts are available if you require them)
 5. Visit `http://localhost/MediVault` in your browser.
