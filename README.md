@@ -25,7 +25,7 @@ MediVault is a secure web-based application designed to manage and store medical
    git clone https://github.com/LesegoSenamela/MediVault.git
    ```
 2. Move it to your `htdocs` directory (if using XAMPP)
-  ```bash
+   ```bash
     mv MediVault /xampp/htdocs/
    ```
 3. Start Apache and MySQL in XAMPP.
