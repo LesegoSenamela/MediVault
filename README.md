@@ -36,9 +36,52 @@ MediVault is a secure web-based application designed to manage and store medical
 - Input sanitization and SQL injection prevention in progress.
 - Passwords are hashed before storage.
 
+## 📸 Screenshots
+- Sign In 
+  
+![Screenshot](medivault_images/sign-in.png)
+
+
+- Sign Up 
+  
+![Screenshot](medivault_images/sign-up1.png)
+![Screenshot](medivault_images/sign-up2.png)
+
+
+- Reset Password
+  
+![Screenshot](medivault_images/reset-password.png)
+![Screenshot](medivault_images/change-pass.png)
+
+
+- Patient
+  
+![Screenshot](medivault_images/patient.png)
+
+
+- Doctor
+  
+![Screenshot](medivault_images/doctor.png)
+
+
+- Nurse
+  
+![Screenshot](medivault_images/nurse.png)
+
+
+- Patient List
+  
+![Screenshot](medivault_images/patient-list.png)
+
+
+- Pharmacy
+  
+![Screenshot](medivault_images/pharmacy.png)
+
+
+## Progress
+> *The project is being refined, this is just a prototype*
+
+
 ## 📬 Contact
 Feel free to reach out on [LinkedIn](https://linkedin.com/in/lesego-senamela) or by email at **senamelalesego@gmail.com**
-
-
-
-I will upload screenshots of the final product.
