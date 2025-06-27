@@ -84,4 +84,4 @@ MediVault is a secure web-based application designed to manage and store medical
 
 
 ## 📬 Contact
-Feel free to reach out on [LinkedIn](https://linkedin.com/in/lesego-senamela) or by email at **senamelalesego@gmail.com**
+Feel free to reach out on [LinkedIn](https://linkedin.com/in/lesego-senamela) or by email at **senamelaimportant@gmail.com**
